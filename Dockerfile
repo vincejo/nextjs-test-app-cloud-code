@@ -12,9 +12,9 @@ ADD . .
 RUN npm run build
 
 EXPOSE 8080
-# expose node.js' debugging port
 EXPOSE 9229
 
-# run in dev mode for debugging.
-CMD npm run dev
-# ENTRYPOINT ["node", "./node_modules/.bin/next", "dev", "-p", "8080"]
+# /usr/local/bin/node is a workaround for:
+#   https://github.com/GoogleContainerTools/container-debug-support/issues/44
+#   https://github.com/GoogleContainerTools/container-debug-support/issues/45
+ENTRYPOINT ["/usr/local/bin/node", "./node_modules/.bin/next", "dev", "-p", "8080"]
