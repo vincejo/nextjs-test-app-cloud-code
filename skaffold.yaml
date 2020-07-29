@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta1
+kind: Config
+metadata:
+  name: test-app
+build:
+  artifacts:
+    - image: test-app
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes-manifests/test-app.deployment.yaml
+      - kubernetes-manifests/test-app.service.yaml
